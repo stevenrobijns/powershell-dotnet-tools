@@ -32,3 +32,12 @@ function GetExternalProjectReferences {
 	GetProjectReferences -CsProjFile "$CsProjFile" |
 	Where-Object { $_.ReferencedProject -like $ProjectReferencesFilter }
 }
+
+function GetReferencedAssemblies {
+	param (
+		[string] $AssemblyFile = 'C:\src\trunk\ICTEAM.Solution\ICTEAM.Project1\bin\debug\ICTEAM.Project1.dll'
+	)
+	
+	$Assembly = [System.Reflection.Assembly]::LoadFrom($AssemblyFile)
+	$Assembly.GetReferencedAssemblies();
+}
