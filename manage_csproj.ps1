@@ -39,5 +39,6 @@ function GetReferencedAssemblies {
 	)
 	
 	$Assembly = [System.Reflection.Assembly]::LoadFrom($AssemblyFile)
-	$Assembly.GetReferencedAssemblies();
+	$Assembly.GetReferencedAssemblies() |
+	% { New-Object PSObject -Property @{AssemblyFile="$AssemblyFile";ReferencedAssembly="$_"} }
 }
