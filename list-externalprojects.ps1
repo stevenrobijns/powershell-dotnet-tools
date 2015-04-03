@@ -1,4 +1,5 @@
-﻿param(
+﻿#This script lists all the project references for all the .csproj files in a given directory
+param(
 	[string] $BasePath = 'C:\src\trunk\',
 	[string] $OutFile = 'C:\temp\' + $BasePath.Replace("\","_").Replace(":","").Replace(" ","").ToLowerInvariant() + '_' +(get-date -uformat "%Y-%m-%D-%H-%M-%S") + '.csv'
 )
