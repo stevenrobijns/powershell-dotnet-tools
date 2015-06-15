@@ -10,7 +10,13 @@ param(
 
 . .\manage_csproj.ps1
 
+#get the content for the csv file
 Get-ChildItem "$BasePath" -Name '*.dll' -Recurse |% { "$BasePath\$_" } |% { GetReferencedAssemblies -AssemblyFile "$_" } | Export-Csv "$OutFile"
+
+#set the seperator of the csv file to make sure excel opens the text in multiple columns
+"sep=," | Insert-Content $outfile
+
+#open the excel file
 &"$ExcelExePath" "$OutFile"
 
 

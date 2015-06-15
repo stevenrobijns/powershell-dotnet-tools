@@ -6,9 +6,13 @@ param(
 	[string] $OutFile = 'C:\temp\' + $BasePath.Replace("\","_").Replace(":","").Replace(" ","").ToLowerInvariant() + '_' +(get-date -format "yyyy-MM-dd_HH-mm-ss") + '.csv'
 )
 
-Write-Output $OutFile
-
 . .\manage_csproj.ps1
 
-Get-ChildItem "$BasePath" -Name '*.csproj' -Recurse |% { "$BasePath\$_" } |% { GetHintPaths -CsProjFile "$_" } | Export-Csv "$OutFile"
+#get the content for the csv file
+Get-ChildItem "$BasePath" -Name '*.csproj' -Recurse |% { "$BasePath\$_" } |% { GetHintPaths -CsProjFile "$_" } | Export-Csv "$OutFile" -NoTypeInformation
+
+#set the seperator of the csv file to make sure excel opens the text in multiple columns
+"sep=," | Insert-Content $outfile
+
+#open the excel file
 &"$ExcelExePath" "$OutFile"
