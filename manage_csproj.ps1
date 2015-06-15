@@ -1,6 +1,6 @@
 function GetHintPaths {
 	param(
-		[string] $CsProjFile = 'C:\src\trunk\ICTEAM.Solution\ICTEAM.Project1\ICTEAM.Project1.csproj'
+		[string] $CsProjFile = 'C:\src\trunk\ICTEAM.Solution\ICTEAM.Project1\ICTEAM.Project1.csproj' # serves as default value
 	)
 	
     [xml] $Xml = Get-Content $CsProjFile
@@ -11,7 +11,7 @@ function GetHintPaths {
 
 function GetProjectReferences {
 	param (
-		[string] $CsProjFile = 'C:\src\trunk\ICTEAM.Solution\ICTEAM.Project1\ICTEAM.Project1.csproj'
+		[string] $CsProjFile = 'C:\src\trunk\ICTEAM.Solution\ICTEAM.Project1\ICTEAM.Project1.csproj' # serves as default value
 	)
 
 	[xml] $Xml = Get-Content $CsProjFile
@@ -25,7 +25,7 @@ function GetProjectReferences {
 
 function GetExternalProjectReferences {
 	param (
-		[string] $CsProjFile = 'C:\src\trunk\ICTEAM.Solution\ICTEAM.Project1\ICTEAM.Project1.csproj',
+		[string] $CsProjFile = 'C:\src\trunk\ICTEAM.Solution\ICTEAM.Project1\ICTEAM.Project1.csproj', # serves as default value
 		[string] $ProjectReferencesFilter = '..\..\*'
 	)
 	
