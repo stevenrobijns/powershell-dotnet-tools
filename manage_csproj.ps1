@@ -1,3 +1,9 @@
+###############################################################################
+#
+# Functions to extract information from csproj files
+#
+###############################################################################
+
 function GetHintPaths {
 	param(
 		[string] $CsProjFile = 'C:\src\trunk\ICTEAM.Solution\ICTEAM.Project1\ICTEAM.Project1.csproj' # serves as default value
@@ -31,22 +37,4 @@ function GetExternalProjectReferences {
 	
 	GetProjectReferences -CsProjFile "$CsProjFile" |
 	Where-Object { $_.ReferencedProject -like $ProjectReferencesFilter }
-}
-
-function GetReferencedAssemblies {
-	param (
-		[string] $AssemblyFile = 'C:\src\trunk\ICTEAM.Solution\ICTEAM.Project1\bin\debug\ICTEAM.Project1.dll'
-	)
-	
-	$Assembly = [System.Reflection.Assembly]::LoadFrom($AssemblyFile)
-	$Assembly.GetReferencedAssemblies() |
-	% { New-Object PSObject -Property @{AssemblyFile="$AssemblyFile";ReferencedAssembly="$_"} }
-}
-
-#insert text at the top of a file
-function Insert-Content {
-	param ( [String]$Path )
-	process {
-			$( ,$_; Get-Content $Path -ea SilentlyContinue) | Out-File $Path
-		}
 }

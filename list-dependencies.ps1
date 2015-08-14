@@ -8,7 +8,8 @@ param(
 	[string] $OutFile = 'C:\temp\' + $BasePath.Replace("\","_").Replace(":","").Replace(" ","").ToLowerInvariant() + '_' +(get-date -format "yyyy-MM-dd_HH-mm-ss") + '.csv'
 )
 
- .\manage_csproj.ps1
+. .\file_functions.ps1
+. .\manage_assembly.ps1
 
 #get the content for the csv file
 Get-ChildItem "$BasePath" -Name '*.dll' -Recurse |% { "$BasePath\$_" } |% { GetReferencedAssemblies -AssemblyFile "$_" } | Export-Csv "$OutFile"
