@@ -4,7 +4,7 @@
 # To do that just open the script in the powershell_ise and type cd YOURDISK:\YOURWORKSPACE\powershell-dotnet-tools in the command line
 param( 
     [string] $ExcelExePath = "C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE",
-	[string] $BasePath = 'C:\git\afc\AFC-Sales\Pms.Sales.Service.Agents\bin\Debug',
+	[string] $BasePath = 'C:\Program Files (x86)\Prodata Mobility Systems\MobiGuider\DirectoryModules',
 	[string] $OutFile = 'C:\temp\' + $BasePath.Replace("\","_").Replace(":","").Replace(" ","").ToLowerInvariant() + '_' +(get-date -format "yyyy-MM-dd_HH-mm-ss") + '.csv'
 )
 
@@ -19,6 +19,5 @@ Get-ChildItem "$BasePath" -Name '*.dll' -Recurse |% { "$BasePath\$_" } |% { GetR
 
 #open the excel file
 &"$ExcelExePath" "$OutFile"
-
 
 
