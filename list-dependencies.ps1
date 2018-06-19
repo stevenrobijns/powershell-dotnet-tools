@@ -3,10 +3,12 @@
 # The line ". .\manage_csproj.ps1" will only work when you change your current working directory to the directory of the manage_csproj.ps1 file when executing from PowerShell ISE
 # To do that just open the script in the powershell_ise and type cd YOURDISK:\YOURWORKSPACE\powershell-dotnet-tools in the command line
 param( 
-    [string] $ExcelExePath = "C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE",
-	[string] $BasePath = 'C:\Program Files (x86)\Prodata Mobility Systems\MobiGuider\DirectoryModules',
+    [string] $ExcelExePath = "C:\Program Files (x86)\Microsoft Office\root\Office16\EXCEL.EXE",
+	[string] $BasePath = 'C:\tfs\Pricing\Dev\PricingFabric\Tests\Pricing.UnitTests\bin\x64\Debug',
 	[string] $OutFile = 'C:\temp\' + $BasePath.Replace("\","_").Replace(":","").Replace(" ","").ToLowerInvariant() + '_' +(get-date -format "yyyy-MM-dd_HH-mm-ss") + '.csv'
 )
+
+cd $PSScriptRoot
 
 . .\file_functions.ps1
 . .\manage_assembly.ps1
