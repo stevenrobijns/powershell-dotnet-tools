@@ -1,0 +1,13 @@
+function Get-Allstatuses() {
+	Get-ChildItem "c:\git\partena" -directory | %{ 
+		$gitPath = ($_.FullName + '\.git');
+		if (Test-Path $gitPath) { 
+			Write-Host $_.FullName -ForegroundColor Yellow
+			Push-Location $_.FullName
+			git status; 
+			Pop-Location
+		}; 
+	}
+}
+
+Set-Alias allstatus Get-Allstatuses
